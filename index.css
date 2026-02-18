@@ -1,0 +1,456 @@
+:root {
+  --cursor-size: 20px;
+  --cursor-hover-size: 60px;
+  --accent-yellow: #ffda2c;
+}
+
+html.lenis {
+  height: auto;
+}
+
+.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis-smooth body {
+  overflow: anchor;
+}
+
+/* Selection Styling - Yellow */
+::selection {
+  background-color: #ffda2c;
+  color: #0A0A0A;
+}
+
+::-moz-selection {
+  background-color: #ffda2c;
+  color: #0A0A0A;
+}
+
+/* Focus Styling */
+:focus-visible {
+  outline: 3px solid #ffda2c;
+  outline-offset: 3px;
+}
+
+/* Smooth Scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Text Animations */
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes glitch {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-border {
+  0%, 100% { border-color: #0A0A0A; }
+  50% { border-color: #ffda2c; }
+}
+
+/* Utility Animation Classes */
+.animate-slide-up {
+  animation: slideUp 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+.animate-slide-down {
+  animation: slideDown 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-glitch:hover {
+  animation: glitch 0.3s infinite;
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}
+
+/* Stagger Animation Delays */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+.stagger-6 { animation-delay: 0.6s; }
+
+/* Line Mask Animations */
+.line-mask {
+  overflow: hidden;
+}
+
+.line-content {
+  display: block;
+  will-change: transform;
+}
+
+.line-mask--headline {
+  padding-bottom: 0.28em;
+  margin-bottom: -0.08em;
+}
+
+.line-content--headline {
+  padding-bottom: 0.06em;
+}
+
+/* Hover Effects */
+.hover-lift {
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+}
+
+.hover-push {
+  transition: transform 0.2s cubic-bezier(0.23, 1, 0.32, 1),
+              box-shadow 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.hover-push:hover {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
+/* Brutal Shadow - Updated to Yellow */
+.brutal-shadow {
+  box-shadow: 6px 6px 0 0 #0A0A0A;
+}
+
+.brutal-shadow-lg {
+  box-shadow: 10px 10px 0 0 #0A0A0A;
+}
+
+.brutal-shadow-accent {
+  box-shadow: 6px 6px 0 0 #ffda2c;
+}
+
+.brutal-shadow-yellow {
+  box-shadow: 6px 6px 0 0 #ffda2c;
+}
+
+/* Text Stroke */
+.text-stroke {
+  -webkit-text-stroke: 2px #0A0A0A;
+  color: transparent;
+}
+
+.text-stroke:hover {
+  color: #0A0A0A;
+  -webkit-text-stroke: 0;
+}
+
+/* Reveal Animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Image Hover Effects */
+.img-grayscale {
+  filter: grayscale(100%);
+  transition: filter 0.5s ease;
+}
+
+.img-grayscale:hover {
+  filter: grayscale(0%);
+}
+
+.img-zoom {
+  transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.img-zoom:hover {
+  transform: scale(1.05);
+}
+
+/* Border Animations - Yellow */
+@keyframes border-pulse {
+  0%, 100% {
+    border-color: #0A0A0A;
+  }
+  50% {
+    border-color: #ffda2c;
+  }
+}
+
+.border-pulse {
+  animation: border-pulse 2s ease-in-out infinite;
+}
+
+/* Link Underline Animation - Yellow */
+.link-underline {
+  position: relative;
+  text-decoration: none;
+}
+
+.link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #ffda2c;
+  transition: width 0.3s ease;
+}
+
+.link-underline:hover::after {
+  width: 100%;
+}
+
+/* Button Hover Effects */
+.btn-brutal {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.btn-brutal::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn-brutal:hover::before {
+  left: 100%;
+}
+
+/* Yellow Accent Button - Black Text */
+.btn-yellow-accent {
+  background-color: #ffda2c;
+  color: #0A0A0A;
+}
+
+.btn-yellow-accent:hover {
+  background-color: #f0cb1d;
+}
+
+/* Loading Animation */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Bounce Animation */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-25%);
+  }
+}
+
+.animate-bounce {
+  animation: bounce 1s ease-in-out infinite;
+}
+
+/* Ping Animation */
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.animate-ping {
+  animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* Custom Scrollbar - Yellow */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F2F2F7;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #0A0A0A;
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ffda2c;
+}
+
+/* Print Styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    background: white;
+    color: black;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ========================================
+   PIXEL STYLE CUSTOM CURSOR - Yellow & Black
+   ======================================== */
+
+/* Hide system cursor on desktop so React pixel cursor is the only cursor */
+@media (pointer: fine) {
+  html, body, *, *::before, *::after {
+    cursor: none !important;
+  }
+}
+
+/* Custom Cursor Hover Effect */
+.cursor-hover-effect {
+  position: relative;
+}
+
+.cursor-hover-effect::after {
+  content: '';
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  border: 2px solid #ffda2c;
+  background: rgba(255, 218, 44, 0.2);
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s;
+}
+
+/* Pixel Cursor Trail Effect */
+.pixel-cursor-trail {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: #ffda2c;
+  border: 1px solid #0A0A0A;
+  pointer-events: none;
+  z-index: 9998;
+  animation: trail-fade 0.5s ease-out forwards;
+}
+
+@keyframes trail-fade {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+  .mobile-stagger-1 { animation-delay: 0.05s; }
+  .mobile-stagger-2 { animation-delay: 0.1s; }
+  .mobile-stagger-3 { animation-delay: 0.15s; }
+  .mobile-stagger-4 { animation-delay: 0.2s; }
+
+  /* Use native cursor on mobile devices */
+  *, a, button, [role="button"], input, textarea, [contenteditable] {
+    cursor: auto !important;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .brutal-shadow {
+    box-shadow: 8px 8px 0 0 #000000;
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  /* Auto-adapt when dark mode is preferred */
+  /* Note: This site uses fixed colors, but this can be adjusted */
+}

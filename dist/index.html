@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HUGO XIE — Director & Editor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Space Grotesk', 'sans-serif'],
+              mono: ['Space Mono', 'monospace'],
+            },
+            colors: {
+              'brutal-black': '#0A0A0A',
+              'brutal-white': '#FAFAFA',
+              'brutal-accent': '#ffda2c',
+              'brutal-yellow': '#ffda2c',
+              'brutal-cyan': '#64D2FF',
+              'brutal-purple': '#BF5AF2',
+              'brutal-gray': '#8E8E93',
+              'brutal-light': '#F2F2F7',
+            },
+            borderWidth: {
+              'brutal': '3px',
+              'brutal-lg': '4px',
+            },
+            transitionTimingFunction: {
+              'brutal-ease': 'cubic-bezier(0.23, 1, 0.32, 1)',
+              'brutal-bounce': 'cubic-bezier(0.34, 1.56, 0.64, 1)',
+            }
+          },
+        },
+      }
+    </script>
+    <style>
+      :root {
+        --cursor-size: 20px;
+        --cursor-hover-size: 60px;
+        --accent-color: #ffda2c;
+        --highlight-yellow: #ffda2c;
+      }
+
+      body {
+        background-color: #FAFAFA;
+        color: #0A0A0A;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+      }
+
+      /* Remove italic styles globally */
+      * {
+        font-style: normal !important;
+      }
+
+      /* Selection Styling - Yellow */
+      ::selection {
+        background-color: #ffda2c;
+        color: #0A0A0A;
+      }
+      ::-moz-selection {
+        background-color: #ffda2c;
+        color: #0A0A0A;
+      }
+      /* Focus Styling */
+      :focus-visible {
+        outline: 3px solid #ffda2c;
+        outline-offset: 3px;
+      }
+
+      /* Loading Screen */
+      #loading-screen {
+        position: fixed;
+        inset: 0;
+        background-color: #ffda2c;
+        z-index: 10000;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.6s ease-out, visibility 0.6s ease-out;
+      }
+      #loading-screen.hidden {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+      .loading-text {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: clamp(2rem, 8vw, 5rem);
+        font-weight: 700;
+        color: #0A0A0A;
+        letter-spacing: -0.05em;
+        animation: glitch 0.8s infinite;
+      }
+      .loading-bar {
+        width: 200px;
+        height: 4px;
+        background-color: rgba(10, 10, 10, 0.2);
+        margin-top: 2rem;
+        overflow: hidden;
+        position: relative;
+      }
+      .loading-bar-fill {
+        height: 100%;
+        background-color: #0A0A0A;
+        width: 0%;
+        transition: width 0.3s ease-out;
+        animation: loadingProgress 2s ease-out forwards;
+      }
+      @keyframes loadingProgress {
+        0% { width: 0%; }
+        100% { width: 100%; }
+      }
+      /* Marquee Animation */
+      @keyframes marquee {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+      }
+      .marquee {
+        animation: marquee 20s linear infinite;
+      }
+      /* Glitch Effect */
+      @keyframes glitch {
+        0%, 100% { transform: translate(0); }
+        20% { transform: translate(-2px, 2px); }
+        40% { transform: translate(-2px, -2px); }
+        60% { transform: translate(2px, 2px); }
+        80% { transform: translate(2px, -2px); }
+      }
+      .glitch:hover {
+        animation: glitch 0.3s infinite;
+      }
+      /* Text Stroke */
+      .text-stroke {
+        -webkit-text-stroke: 2px #0A0A0A;
+        color: transparent;
+      }
+      .text-stroke:hover {
+        color: #0A0A0A;
+        -webkit-text-stroke: 0;
+      }
+      /* Brutal Shadow */
+      .brutal-shadow {
+        box-shadow: 6px 6px 0 0 #0A0A0A;
+      }
+      .brutal-shadow-lg {
+        box-shadow: 10px 10px 0 0 #0A0A0A;
+      }
+      .brutal-shadow-accent {
+        box-shadow: 6px 6px 0 0 #ffda2c;
+      }
+      /* Scrollbar - Yellow Accent */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #F2F2F7;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #0A0A0A;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #ffda2c;
+      }
+    </style>
+
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "framer-motion": "https://esm.sh/framer-motion@^12.34.0",
+    "lucide-react": "https://esm.sh/lucide-react@^0.564.0",
+    "react-router-dom": "https://esm.sh/react-router-dom@^7.13.0"
+  }
+}
+</script>
+  <script type="module" crossorigin src="/assets/index-vrnwj79l.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-C1YtY8Fz.css">
+</head>
+  <body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+      <div class="loading-text">HUGO XIE</div>
+      <div class="loading-bar">
+        <div class="loading-bar-fill"></div>
+      </div>
+    </div>
+
+    <div id="root"></div>
+    <script>
+      // Hide loading screen after load
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          const loadingScreen = document.getElementById('loading-screen');
+          if (loadingScreen) {
+            loadingScreen.classList.add('hidden');
+          }
+        }, 2200);
+      });
+
+      // Load Lenis from CDN dynamically to ensure it exists
+      const script = document.createElement('script');
+      script.src = "https://unpkg.com/lenis@1.1.18/dist/lenis.min.js";
+      script.onload = () => {
+        const lenis = new Lenis({
+          duration: 1.2,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          smoothWheel: true,
+          wheelMultiplier: 1,
+        });
+        // The essential animation loop
+        function raf(time) {
+          lenis.raf(time);
+          requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        console.log('Lenis Smooth Scroll Initialized Safely');
+      };
+      script.onerror = () => {
+        console.error('Lenis failed to load, falling back to native scroll.');
+      };
+      document.body.appendChild(script);
+    </script>
+</body>
+</html>
