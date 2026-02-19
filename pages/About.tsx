@@ -102,7 +102,7 @@ const About: React.FC = () => {
     {
       label: language === 'zh' ? '在听' : 'Listening',
       value: 'Bad Bunny',
-      image: 'https://cdn-images.dzcdn.net/images/cover/d98eaccfbb945bdf68241d6de7fe6a49/500x500.jpg',
+      image: 'https://img.heliar.top/file/1771469420630_bad_bunny_dtmf_cover.jpg',
       color: '#228B22'
     }
   ];
