@@ -1,7 +1,7 @@
 import React, { useLayoutEffect, useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PageTransition from '../components/PageTransition';
-import { PROJECTS, OTHER_WORKS } from '../constants';
+import { PROJECTS, OTHER_WORKS, ABOUT_INTRO } from '../constants';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 import { ArrowRight, Play, Clapperboard, Scissors, Camera } from 'lucide-react';
@@ -22,6 +22,20 @@ const Home: React.FC = () => {
   }, []);
 
   const featuredProjects = PROJECTS.slice(0, 3);
+  const featuredProjectIntro: Record<string, { zh: string; en: string }> = {
+    hugs: {
+      zh: '探索拥抱以及其背后承载的重量。',
+      en: 'Explores hugs and the emotional weight they carry.'
+    },
+    wandouhuang: {
+      zh: '聚焦于北京“女性与多元群体友好空间”的幸福与困境。',
+      en: "Focuses on a women and diverse-groups-friendly space in Beijing, its joys and struggles."
+    },
+    'agi-playground': {
+      zh: 'AI创业者峰会开场视频，AI生成，人类创意。',
+      en: 'Opening video for an AI founders summit: AI-generated, human-crafted creativity.'
+    }
+  };
 
   const splitText = (text: string) => {
     return text.split('').map((char, idx) => (
@@ -181,6 +195,9 @@ const Home: React.FC = () => {
               </div>
 
               <div className="hero-cta mt-8 md:mt-12">
+                <p className="max-w-3xl mb-5 text-sm sm:text-base md:text-lg leading-relaxed text-brutal-gray">
+                  {ABOUT_INTRO[language]}
+                </p>
                 <Link
                   to="/about"
                   className="group inline-flex items-center gap-3 bg-brutal-black text-brutal-white px-5 sm:px-6 md:px-8 py-3 sm:py-4 md:py-5 font-mono text-xs sm:text-sm uppercase tracking-wider brutal-shadow brutal-shadow-accent hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all duration-200"
@@ -285,6 +302,11 @@ const Home: React.FC = () => {
                     <p className="text-brutal-gray font-mono text-xs uppercase tracking-wider mt-2">
                       {project.content[language].type}
                     </p>
+                    {featuredProjectIntro[project.id] && (
+                      <p className="text-sm md:text-base text-brutal-gray mt-3 leading-relaxed">
+                        {featuredProjectIntro[project.id][language]}
+                      </p>
+                    )}
                   </div>
                   <div className="flex-shrink-0">
                     <ArrowRight className="w-5 h-5 text-brutal-black group-hover:translate-x-1 group-hover:text-brutal-accent transition-all duration-300" />
